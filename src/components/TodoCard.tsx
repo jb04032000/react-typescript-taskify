@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Todo } from "../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { BiUndo } from "react-icons/bi";
 import { MdDone } from "react-icons/md";
 import "../styles/TodoCard.css";
 import { Draggable } from "react-beautiful-dnd";
@@ -114,9 +115,15 @@ const TodoCard: React.FC<Props> = ({
             <span className="icon" onClick={() => handleDelete(todo.id)}>
               <AiFillDelete />
             </span>
-            <span className="icon" onClick={() => handleDone(todo.id)}>
-              <MdDone />
-            </span>
+            {todo.isDone ? (
+              <span className="icon" onClick={() => handleDone(todo.id)}>
+                <BiUndo />
+              </span>
+            ) : (
+              <span className="icon" onClick={() => handleDone(todo.id)}>
+                <MdDone />
+              </span>
+            )}
           </div>
         </form>
       )}
